@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn" onclick="btn()">Click</button>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            {% load static %}
+            navigator.serviceWorker.register('{% static 'sw.js' %}').then(function (reg) {
+                console.log('REG!', reg);
+            }).catch(function (err) {
+                console.log('NO!', err);
+            });
+        }
+    </script>
+    <script>
+        function btn() {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(response=>{console.log(response)})
+        }
+    </script>
+    
+</body>
+</html> 
